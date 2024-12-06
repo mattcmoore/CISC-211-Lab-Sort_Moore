@@ -44,6 +44,9 @@
 #include "printFuncs.h"  // lab print funcs
 #include "testFuncs.h"  // lab test funcs
 
+// Set this to 1 starting for Spring'25
+#define DO_NEW_SWAP_TESTS 0
+
 /* RTC Time period match values for input clock of 1 KHz */
 #define PERIOD_50MS                             51
 #define PERIOD_500MS                            512
@@ -83,7 +86,23 @@ static int32_t swapTestCases[][2] =
     {0x80000001,0x00000001}, // swap TC 1
     {0,0},                   // swap TC 2
     {1,2},                   // swap TC 3
-    {2,1}                    // swap TC 4
+#if DO_NEW_SWAP_TESTS
+    {2,1},                   // swap TC 4
+    {-1,-2},     // NEW for Spring '25!
+    {-2,-1},     // NEW for Spring '25!
+    {-3,4},      // NEW for Spring '25!
+    {5,-4},      // NEW for Spring '25!
+    {0x0000FFFF,0x0000FFFE},     // NEW for Spring '25!
+    {0x0000FFFE,0x0000FFFF},     // NEW for Spring '25!
+    {0x0000FFFD,0x00000004},     // NEW for Spring '25!
+    {0x00000005,0x0000FFFC},     // NEW for Spring '25!
+    {0x000000FF,0x000000FE},     // NEW for Spring '25!
+    {0x000000FE,0x000000FF},     // NEW for Spring '25!
+    {0x000000FD,0x00000004},     // NEW for Spring '25!
+    {0x00000005,0x000000FC}      // NEW for Spring '25!
+#else
+    {2,1}                   // swap TC 4
+#endif
 };
 
 // test cases for sort
@@ -184,7 +203,7 @@ int main ( void )
                 // STUDENTS! If you need to debug a test case, change the
                 // number in the line of code below to match. Then set a
                 // breakpoint on the line between the curly braces...
-                int32_t breakForTestNum = 6;
+                int32_t breakForTestNum = 8;
                 if(testCaseCounter == breakForTestNum)
                 {
                     // do nothing; set breakpoint on the following line
