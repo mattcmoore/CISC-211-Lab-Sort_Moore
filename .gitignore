@@ -42,3 +42,5 @@
 *c~
 *.swp
 *.bak
+/Lab-11-Sort/firmware/sort_starter_project.X/dist/
+/Lab-11-Sort/firmware/sort_starter_project.X/build/
